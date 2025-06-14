@@ -1,0 +1,11 @@
+version: 2
+
+sources:
+  - name: dvdrental
+    schema: main # or whatever your schema actually is in DuckDB
+    tables:
+      - name: payment
+      - name: customer
+      - name: city
+      - name: address
+      - name: country

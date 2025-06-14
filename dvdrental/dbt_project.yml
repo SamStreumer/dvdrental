@@ -1,0 +1,20 @@
+name: "demo"
+version: "1.0.0"
+
+# dbt will look for a profile named 'demo' in your ~/.dbt/profiles.yml
+profile: "demo"
+
+model-paths: ["models"]
+target-path: "target"
+clean-targets: ["target", "dbt_packages"]
+
+models:
+  demo:
+    raw:
+      +materialized: view
+    star:
+      +materialized: table
+      dim:
+        +schema: dim
+      fct:
+        +schema: fct
