@@ -3,8 +3,7 @@
     schema='main_fct'
 ) }}
 
--- Payment City: Gemiddelde opbrengst per locatie
--- Gebruik LIMIT 1 om multiple rows probleem op te lossen
+
 SELECT 
     city_id as LocationKey,
     AVG(amount) as Amount_AVG

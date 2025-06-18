@@ -1,16 +1,18 @@
+# Maak /dvdrental/which_db.py
 import duckdb
 
-con = duckdb.connect("/Users/samstreumer/Documents/SchoolFolder/dvdrental/dvdrental/dvdrental.duckdb")
+print("=== DATABASE 1: /dvdrental/dvdrental/dvdrental.duckdb ===")
+con1 = duckdb.connect("/Users/samstreumer/Documents/SchoolFolder/dvdrental/dvdrental/dvdrental.duckdb")
+tables1 = con1.execute("SHOW TABLES").fetchall()
+print(f"Aantal tabellen: {len(tables1)}")
+for t in tables1:
+    print(f"- {t[0]}")
+con1.close()
 
-print("=== ALLE TABELLEN MET SCHEMA ===")
-result = con.execute("""
-    SELECT table_schema, table_name 
-    FROM information_schema.tables 
-    WHERE table_schema NOT IN ('information_schema', 'pg_catalog')
-    ORDER BY table_schema, table_name
-""").fetchall()
-
-for schema, table in result:
-    print(f"{schema}.{table}")
-
-con.close()
+print("\n=== DATABASE 2: /dvdrental/dvdrental.duckdb ===")
+con2 = duckdb.connect("/Users/samstreumer/Documents/SchoolFolder/dvdrental/dvdrental.duckdb")
+tables2 = con2.execute("SHOW TABLES").fetchall()
+print(f"Aantal tabellen: {len(tables2)}")
+for t in tables2:
+    print(f"- {t[0]}")
+con2.close()
